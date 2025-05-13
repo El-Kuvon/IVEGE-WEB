@@ -1,0 +1,1267 @@
+/* ===================================================== */
+/* 1. VARIABLES CSS
+/* ===================================================== */
+:root {
+  --primary-dark: #0A2E50; /* Azul Oscuro */
+  --primary-medium: #1A65A0; /* Azul Medio */
+  --accent-cyan: #00A0DC;    /* Acento Vibrante (Ejemplo) */
+  --neutral-gray: #6C757D;  /* Gris Neutro */
+  --light-gray: #f8f9fa;    /* Gris Claro (para fondos) */
+  --white: #FFFFFF;        /* Blanco */
+  --black: #212529;        /* Negro Suave */
+  --success-green: #28A745; /* Verde Sutil (para iconos específicos o mensajes) */
+
+  --font-primary: 'Poppins', sans-serif;
+  --text-color: var(--neutral-gray);
+  --heading-color: var(--primary-dark);
+
+  --header-height: 70px;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s ease;
+}
+
+/* ===================================================== */
+/* 2. RESET Y ESTILOS BASE
+/* ===================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base para REM */
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 2.5rem; font-weight: 700;} /* 40px */
+h2 { font-size: 2rem; } /* 32px */
+h3 { font-size: 1.5rem; } /* 24px */
+h4 { font-size: 1.25rem; } /* 20px */
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-medium);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--accent-cyan);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===================================================== */
+/* 3. LAYOUT Y UTILIDADES
+/* ===================================================== */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section-padding {
+  padding: 80px 0;
+}
+/* Utilidad para padding más pequeño (ej. nav interna) */
+.section-padding--small {
+    padding: 15px 0;
+}
+
+.bg-light {
+  background-color: var(--light-gray);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Estilos generales para títulos de sección */
+.section-title {
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 15px;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-cyan);
+    border-radius: 2px;
+}
+.section-subtitle {
+    color: var(--neutral-gray);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Gradiente reutilizable */
+.bg-primary-gradient {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+}
+
+
+/* ===================================================== */
+/* 4. COMPONENTES (Ej: Botones)
+/* ===================================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: var(--accent-cyan);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background-color: #008ac7; /* Darker Cyan */
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 160, 220, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--primary-medium);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 46, 80, 0.2);
+}
+
+.btn-light {
+    background-color: var(--white);
+    color: var(--primary-medium);
+}
+.btn-light:hover {
+    background-color: var(--light-gray);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+/* ===================================================== */
+/* 5. LAYOUT PRINCIPAL (Header, Footer, Navegación)
+/* ===================================================== */
+
+/* --- HEADER --- */
+.header {
+  background-color: var(--white);
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+.logo .logo-text {
+    color: var(--accent-cyan);
+}
+.logo:hover {
+    color: var(--primary-medium);
+}
+
+/* --- Navegación Principal (Escritorio) --- */
+.nav-list {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  color: var(--heading-color);
+  font-weight: 600;
+  padding: 5px 0;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--accent-cyan);
+  transition: width var(--transition-speed);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+    color: var(--accent-cyan);
+}
+
+/* --- Navegación Móvil --- */
+.mobile-menu-toggle,
+.mobile-menu-close {
+  display: none; /* Oculto en escritorio por defecto */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  cursor: pointer;
+}
+/* Solución click icono */
+#mobile-menu-toggle i {
+    pointer-events: none;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--primary-dark);
+  z-index: 1001;
+  padding: 60px 20px 20px;
+  transition: right var(--transition-speed);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-nav-link {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 0;
+  display: block;
+  transition: color var(--transition-speed);
+}
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--accent-cyan);
+}
+
+.mobile-menu-close {
+    display: block; /* Siempre visible DENTRO del nav móvil */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--white);
+}
+
+/* --- FOOTER --- */
+.footer {
+  background-color: var(--primary-dark);
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-col-title {
+  color: var(--white);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer-col-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-cyan);
+}
+
+.footer-col ul {
+  padding-left: 0;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: color var(--transition-speed), padding-left var(--transition-speed);
+}
+.footer-col ul li a:hover {
+  color: var(--white);
+  padding-left: 5px;
+}
+
+.footer-col i {
+    margin-right: 8px;
+    color: var(--accent-cyan);
+    width: 15px; /* Alineación */
+    text-align: center;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+.social-links a {
+  display: inline-block;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-size: 1.1rem;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+.social-links a:hover {
+  background-color: var(--accent-cyan);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.footer-contact-form input,
+.footer-contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    color: var(--white);
+}
+.footer-contact-form input::placeholder,
+.footer-contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+.footer-contact-form textarea {
+    resize: vertical;
+}
+.footer-contact-form .btn {
+    width: 100%;
+}
+
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  margin-top: 40px;
+}
+.footer-bottom p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+/* ===================================================== */
+/* 6. ESTILOS DE SECCIONES ESPECÍFICAS
+/* ===================================================== */
+
+/* --- HERO SECTION (Homepage) --- */
+.hero-section {
+  height: 100vh;
+  min-height: 600px;
+  background: url('../img/hero-background.jpg') no-repeat center center/cover; /* Ruta corregida para CSS */
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(10, 46, 80, 0.8) 0%, rgba(26, 101, 160, 0.6) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* --- PAGE HERO (Páginas Interiores) --- */
+.page-hero-section {
+    height: 50vh;
+    min-height: 350px;
+    background-color: var(--primary-dark);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background-size: cover;
+    background-position: center center;
+}
+.page-hero-section .hero-overlay {
+    background: linear-gradient(90deg, rgba(10, 46, 80, 0.85) 0%, rgba(26, 101, 160, 0.65) 100%);
+}
+.page-hero-section .hero-content {
+     position: relative;
+     z-index: 2;
+}
+/*
+.services-hero {
+     background-image: url('../img/servicios-hero-bg.jpg'); */ /* Ruta corregida 
+}*/
+.service-detail-hero {
+     height: 45vh;
+     min-height: 300px;
+     justify-content: flex-start;
+     text-align: left;
+ }
+ /*
+.service-tecnico-hero {
+     /* background-image: url('../img/servicio-tecnico-bg.jpg'); */ /* Ruta corregida
+}  */
+ .service-detail-hero .hero-content {
+      max-width: 800px;
+  }
+
+/* --- Breadcrumbs --- */
+ .breadcrumbs {
+     margin-bottom: 15px;
+ }
+ .breadcrumbs ol {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     display: flex;
+     gap: 5px;
+     color: rgba(255, 255, 255, 0.8);
+     font-size: 0.9rem;
+ }
+ .breadcrumbs li:not(:last-child)::after {
+     content: '/';
+     margin-left: 5px;
+     color: rgba(255, 255, 255, 0.6);
+ }
+ .breadcrumbs a {
+     color: rgba(255, 255, 255, 0.8);
+     text-decoration: none;
+ }
+ .breadcrumbs a:hover {
+     color: var(--white);
+     text-decoration: underline;
+ }
+  .breadcrumbs span[aria-current="page"] {
+     color: var(--white);
+     font-weight: 600;
+ }
+
+/* --- WHY CHOOSE US (Homepage - #why-us) --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.feature-item {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-medium), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+   background-clip: text;
+   /* text-fill-color: transparent; */ /* Comentado por si da problemas en algún navegador */
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--primary-dark);
+}
+
+/* --- SERVICES OVERVIEW (Homepage - #services) & Services Page Grid --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  color: var(--primary-medium);
+  margin-bottom: 15px;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--primary-dark);
+  flex-grow: 1;
+}
+
+.learn-more { /* Usado en Homepage */
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: auto;
+  display: inline-block;
+  transition: color var(--transition-speed);
+}
+.learn-more i {
+    margin-left: 5px;
+    transition: transform var(--transition-speed);
+}
+.learn-more:hover {
+  color: var(--primary-medium);
+}
+.learn-more:hover i {
+    transform: translateX(5px);
+}
+
+/* Estilos específicos para grid en /servicios.html */
+ .services-page-grid .service-card .btn-small {
+      margin-top: auto;
+      display: block;
+      text-align: center;
+  }
+
+/* --- SECTORS TEASER (Homepage - #sectors) --- */
+.sectors-teaser-section {
+    background-color: var(--white); /* Asegura fondo blanco si no es .bg-light */
+}
+
+.sector-icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.sector-icon-item {
+    text-align: center;
+    color: var(--neutral-gray);
+    transition: color var(--transition-speed), transform var(--transition-speed);
+    cursor: default;
+}
+.sector-icon-item i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary-medium);
+    transition: color var(--transition-speed);
+}
+.sector-icon-item span {
+    font-weight: 600;
+    display: block;
+     color: var(--heading-color);
+}
+.sector-icon-item:hover {
+    transform: scale(1.1);
+    color: var(--accent-cyan);
+}
+.sector-icon-item:hover i {
+     color: var(--accent-cyan);
+}
+
+/* --- QUIENES SOMOS (Homepage - #about) --- */
+.about-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 50px;
+    align-items: stretch;
+}
+
+.about-col {
+    flex: 1;
+    min-width: 280px;
+}
+
+.about-col-mv { /* Apunta específicamente a la columna de Misión/Visión */
+  display: flex;           /* La convierte en contenedor flex */
+  flex-direction: column; /* Sus hijos (las cajas) se apilan verticalmente */
+  justify-content: space-between; /* <--- ¡ESTA ES LA CLAVE! */
+}
+
+.about-col-text h3 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.about-col-text h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-cyan);
+}
+.about-col-text p {
+     margin-bottom: 20px;
+ }
+
+.mission-vision-box {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+     border-left: 5px solid var(--primary-medium);
+}
+.mission-vision-box:last-child {
+     margin-bottom: 0;
+ }
+
+.mission-vision-box h4 {
+    color: var(--primary-medium);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+.mission-vision-box h4 i {
+     margin-right: 8px;
+     color: var(--accent-cyan);
+ }
+
+.values-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.values-title {
+    margin-bottom: 40px;
+    color: var(--primary-dark);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.value-item {
+    text-align: center;
+    padding: 20px;
+     background-color: var(--white);
+     border-radius: var(--border-radius);
+     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+     transition: transform 0.3s ease;
+}
+ .value-item:hover {
+     transform: translateY(-5px);
+ }
+
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--accent-cyan);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.value-item h4 {
+    color: var(--primary-dark);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+/* --- SERVICIOS DETAIL PAGE (servicios.html Sections) --- */
+
+/* Navegación Interna */
+.internal-nav-wrapper {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.sticky-internal-nav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 999;
+  background-color: var(--light-gray); /* Debe tener fondo al pegarse */
+  transition: box-shadow 0.3s ease;
+}
+/* .sticky-internal-nav.is-sticky { */
+ /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
+/* } */
+.internal-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px 25px;
+}
+.internal-nav-link {
+  color: var(--neutral-gray);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid transparent;
+}
+.internal-nav-link:hover {
+  color: var(--primary-dark);
+  background-color: rgba(0, 160, 220, 0.1);
+  border-color: rgba(0, 160, 220, 0.3);
+}
+/* Estilo para link activo interno (requiere JS) */
+/* .internal-nav-link.active { ... } */
+
+/* Base de Sección Detalle Servicio */
+.service-detail-section {
+ border-bottom: 1px solid #eee;
+ overflow: hidden;
+}
+.service-detail-section:last-of-type {
+  border-bottom: none;
+}
+
+/* Título Principal de Sección Detalle */
+.service-section-title--page {
+   font-size: 2.2rem;
+   color: var(--primary-dark);
+   margin-bottom: 40px;
+   text-align: center;
+   position: relative;
+   padding-bottom: 15px;
+}
+.service-section-title--page i {
+    margin-right: 15px;
+    color: var(--accent-cyan);
+}
+.service-section-title--page::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 4px;
+    background-color: var(--accent-cyan);
+    border-radius: 2px;
+}
+/* Alternativa título izquierda */
+/* .service-section-title--page { text-align: left; } */
+/* .service-section-title--page::after { left: 0; transform: translateX(0); } */
+
+/* Grid y Columnas de Detalle */
+.service-detail-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+}
+.service-detail-main .service-section-title, /* Títulos H2 ya definidos? */
+.service-detail-main .service-subsection-title { /* Títulos H3 */
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+.service-detail-main .service-section-title { /* Si es un H2 dentro */
+     font-size: 1.8rem;
+     margin-top: 0;
+ }
+.service-detail-main .service-subsection-title { /* Si es un H3 */
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-cyan);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+.service-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.service-list li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+.service-list li i {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--success-green);
+    font-size: 1.1rem;
+}
+
+/* Sidebar de Detalle */
+.service-detail-sidebar .sidebar-widget {
+    background-color: var(--light-gray);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+}
+.sidebar-widget .widget-title {
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-medium);
+    padding-bottom: 10px;
+}
+.sidebar-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-widget ul li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 22px;
+}
+.sidebar-widget ul li i {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--primary-medium);
+    font-size: 1rem;
+}
+.benefits-list li i { color: var(--success-green); } /* Específico beneficios */
+.sidebar-cta {
+     background-color: var(--primary-medium);
+     color: var(--white);
+ }
+.sidebar-cta .widget-title {
+     color: var(--white);
+     border-bottom-color: rgba(255, 255, 255, 0.5);
+ }
+.sidebar-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+.sidebar-cta .btn-primary {
+    background-color: var(--accent-cyan);
+    color: var(--white);
+    width: 100%;
+    padding: 12px;
+}
+.sidebar-cta .btn-primary:hover {
+     background-color: #008ac7;
+ }
+
+ /* Imagen en Detalle Servicio */
+ .service-image-container {
+   margin-top: 30px;
+   text-align: center;
+}
+.service-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+}
+.image-caption {
+    font-size: 0.9rem;
+    color: var(--neutral-gray);
+    font-style: italic;
+}
+
+/* --- FINAL CTA (Homepage - #final-cta) --- */
+.final-cta-section { /* Ya definido arriba con bg-primary-gradient */
+  color: var(--white);
+}
+.cta-title {
+  color: var(--white);
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+.cta-text {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===================================================== */
+/* 7. ELEMENTOS ESPECÍFICOS (Back-to-top)
+/* ===================================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-cyan);
+    color: var(--white);
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed), visibility var(--transition-speed), background-color var(--transition-speed);
+}
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.back-to-top:hover {
+    background-color: var(--primary-medium);
+    color: var(--white);
+}
+
+/* ===================================================== */
+/* 8. ANIMACIONES
+/* ===================================================== */
+
+/* --- Animaciones Generales de Scroll --- */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.fade-in {
+  transform: translateY(20px);
+}
+.animate-on-scroll.fade-in-up {
+    transform: translateY(50px);
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Delays */
+[data-delay='100'].visible { transition-delay: 0.1s; }
+[data-delay='200'].visible { transition-delay: 0.2s; }
+[data-delay='300'].visible { transition-delay: 0.3s; }
+[data-delay='400'].visible { transition-delay: 0.4s; }
+[data-delay='500'].visible { transition-delay: 0.5s; }
+[data-delay='600'].visible { transition-delay: 0.6s; }
+[data-delay='700'].visible { transition-delay: 0.7s; } /* Añadido por si acaso */
+
+
+/* --- Animaciones Específicas Página Servicios --- */
+
+/* Grid de detalle */
+.service-detail-section .service-detail-grid {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: 0.2s;
+}
+.service-detail-section.visible .service-detail-grid {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger para listas */
+.service-detail-section.visible .service-list li,
+.service-detail-section.visible .benefits-list li,
+.service-detail-section.visible .sectors-list li {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInFade 0.5s ease-out forwards;
+}
+/* Delays ejemplo para service-list */
+.service-detail-section.visible .service-list li:nth-child(1) { animation-delay: 0.4s; }
+.service-detail-section.visible .service-list li:nth-child(2) { animation-delay: 0.5s; }
+.service-detail-section.visible .service-list li:nth-child(3) { animation-delay: 0.6s; }
+.service-detail-section.visible .service-list li:nth-child(4) { animation-delay: 0.7s; }
+/* ... añadir más si hay más items ... */
+
+
+/* Keyframes */
+@keyframes slideInFade {
+   from {
+       opacity: 0;
+       transform: translateX(-20px);
+   }
+   to {
+       opacity: 1;
+       transform: translateX(0);
+   }
+}
+
+
+/* ===================================================== */
+/* 9. RESPONSIVE DESIGN
+/* ===================================================== */
+
+/* Tablets y Escritorios Pequeños */
+@media (max-width: 992px) {
+  .nav-list {
+    gap: 20px;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .features-grid, .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+   .values-grid { /* Ajuste para Quienes Somos */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+  .footer-grid {
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+   /* Apilar columnas en detalle de servicio */
+  .service-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+  }
+  .service-detail-sidebar {
+     margin-top: 30px;
+ }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px;
+  }
+  h1, .hero-title { font-size: 2rem; }
+  h2, .section-title, .service-section-title--page { font-size: 1.8rem; } /* Ajuste título servicio */
+  h3, .feature-title, .service-title { font-size: 1.2rem; }
+  h4, .value-item h4, .widget-title { font-size: 1.1rem; } /* Ajuste H4 */
+
+  /* Header/Nav Móvil */
+  .main-nav {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: block;
+  }
+  .header-container {
+      padding: 0 20px;
+  }
+  .logo {
+      font-size: 1.5rem;
+  }
+
+  /* Hero Homepage */
+  .hero-section {
+      height: auto;
+      min-height: 500px;
+      padding: 100px 0 60px;
+      text-align: center;
+  }
+  .hero-content {
+      max-width: 100%;
+  }
+  .hero-cta {
+      justify-content: center;
+  }
+
+   /* Page Hero */
+  .page-hero-section {
+     height: 40vh;
+     min-height: 280px;
+     text-align: center; /* Centrar en móvil */
+  }
+   .service-detail-hero {
+     height: 35vh;
+     min-height: 250px;
+     text-align: center; /* Centrar en móvil */
+     justify-content: center; /* Centrar */
+  }
+   .breadcrumbs {
+       justify-content: center; /* Centrar breadcrumbs */
+   }
+
+  /* Padding y Títulos de Sección */
+  .section-padding {
+      padding: 60px 0;
+  }
+  .section-title, .service-section-title--page {
+      margin-bottom: 30px;
+  }
+   .section-title::after, .service-section-title--page::after {
+        width: 50px;
+        height: 3px;
+    }
+
+  /* Grids Generales */
+  .features-grid, .services-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  /* Quienes Somos Móvil */
+   .about-row {
+       gap: 30px;
+   }
+   .values-grid {
+       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajuste más pequeño */
+       gap: 15px;
+   }
+   .mission-vision-box h4 { font-size: 1.1rem; }
+   .value-item h4 { font-size: 1rem; }
+
+   /* Servicios Detalle Móvil */
+   .internal-nav-list { gap: 10px 15px; } /* Menos espacio en nav interna */
+   .internal-nav-link { padding: 6px 10px; font-size: 0.9rem;}
+   .service-section-title--page i { display: block; margin: 0 auto 10px; } /* Icono encima */
+   .service-section-title--page::after { left: 50%; transform: translateX(-50%); } /* Asegurar centro */
+   /* Grid ya se apila por media query anterior */
+
+  /* Footer Móvil */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-col {
+    margin-bottom: 30px;
+  }
+   .footer-col ul {
+        padding-left: 0;
+    }
+  .footer-col-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+   .social-links {
+       justify-content: center;
+       display: flex;
+       gap: 15px;
+   }
+   .footer-contact-form {
+       max-width: 350px;
+       margin: 0 auto;
+   }
+
+  /* Back-to-Top Móvil */
+  .back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 1rem;
+  }
+}
