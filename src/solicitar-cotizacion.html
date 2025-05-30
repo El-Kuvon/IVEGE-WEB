@@ -1,0 +1,92 @@
+---
+layout: base.njk
+title: Solicitar Cotización - IVEGE S.A.S
+description: Complete el formulario para solicitar una cotización detallada de los servicios de IVEGE S.A.S. Ingeniería, Verificación y Gestión.
+activeNav: contacto # O podrías crear 'cotizacion' si quieres un resaltado diferente
+---
+
+<main>
+    <section class="page-hero-section quote-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <h1 class="hero-title animate-on-scroll fade-in">Solicitar una Cotización</h1>
+            <p class="hero-subtitle animate-on-scroll fade-in" data-delay="100">Déjenos conocer sus requerimientos y nuestro equipo se pondrá en contacto con usted a la brevedad.</p>
+        </div>
+    </section>
+
+    <section class="quote-form-section section-padding">
+        <div class="container">
+            <div class="form-container animate-on-scroll fade-in-up" data-delay="200">
+                <h2 class="section-title text-center">Detalles de su Solicitud</h2>
+                <p class="text-center form-intro-text">Por favor, complete la siguiente información. Los campos marcados con <span class="required-asterisk">*</span> son obligatorios.</p>
+
+                <form id="quoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo <span class="required-asterisk">*</span></label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Su nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono <span class="required-asterisk">*</span></label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 3001234567">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico <span class="required-asterisk">*</span></label>
+                            <input type="email" id="correo" name="correo" required placeholder="sucorreo@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa que Representa (Opcional)</label>
+                            <input type="text" id="empresa" name="empresa" placeholder="Nombre de su empresa">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoServicio">Tipo de Servicio Solicitado <span class="required-asterisk">*</span></label>
+                        <select id="tipoServicio" name="tipoServicio" required>
+                            <option value="" disabled selected>Seleccione un servicio...</option>
+                            <option value="servicio-tecnico">Servicio Técnico y Mantenimiento</option>
+                            <option value="comercializacion">Comercialización y Suministro</option>
+                            <option value="asesoria">Asesoría, Consultoría y Capacitación</option>
+                            <option value="laboratorio">Servicios de Laboratorio y Análisis</option>
+                            <option value="ingenieria">Servicios de Ingeniería y Diseño</option>
+                            <option value="personal">Suministro de Personal Técnico y Entrenamiento</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcionAdicional">Descripción Adicional de su Requerimiento (Opcional)</label>
+                        <textarea id="descripcionAdicional" name="descripcionAdicional" rows="5" placeholder="Describa con más detalle lo que necesita, equipos involucrados, normativas a cumplir, etc."></textarea>
+                    </div>
+
+                    <fieldset class="form-group">
+                        <legend>Preferencia de Contacto <span class="required-asterisk">*</span></legend>
+                        <div class="radio-group">
+                            <label for="contactoWhatsapp">
+                                <input type="radio" id="contactoWhatsapp" name="tipoContacto" value="whatsapp" checked>
+                                Vía WhatsApp
+                            </label>
+                            <label for="contactoLlamada">
+                                <input type="radio" id="contactoLlamada" name="tipoContacto" value="llamada">
+                                Vía Llamada Telefónica
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div id="campoHoraLlamada" class="form-group conditional-field" style="display: none;">
+                        <label for="horaLlamada">Mejor Horario para Recibir la Llamada (Opcional)</label>
+                        <input type="text" id="horaLlamada" name="horaLlamada" placeholder="Ej: Lunes 9-11 AM, Viernes después de 2 PM">
+                        </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary btn-large">Enviar Solicitud de Cotización</button>
+                    </div>
+
+                    <p class="form-note text-center">Un asesor de IVEGE S.A.S se pondrá en contacto con usted en un plazo de 24-48 horas hábiles.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>

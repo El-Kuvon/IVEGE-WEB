@@ -222,5 +222,36 @@ if (window.scrollY < 50) {
 // ==================================================================
 // --- Fin Lógica de Navegación Activa ---
 // ==================================================================
+// --- Lógica para Formulario de Cotización (Campo Condicional) ---
+    const tipoContactoRadios = document.querySelectorAll('input[name="tipoContacto"]');
+    const campoHoraLlamada = document.getElementById('campoHoraLlamada');
+
+    if (tipoContactoRadios.length > 0 && campoHoraLlamada) {
+        tipoContactoRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'llamada' && this.checked) {
+                    campoHoraLlamada.style.display = 'block'; // Muestra el campo
+                    // Para animación con CSS:
+                    campoHoraLlamada.classList.add('visible');
+                } else {
+                    campoHoraLlamada.style.display = 'none'; // Oculta el campo
+                    // Para animación con CSS:
+                    campoHoraLlamada.classList.remove('visible');
+                }
+            });
+        });
+
+        // Verificar estado inicial al cargar la página (por si el usuario recarga)
+        const radioLlamadaSeleccionado = document.querySelector('input[name="tipoContacto"][value="llamada"]:checked');
+        if (radioLlamadaSeleccionado) {
+            campoHoraLlamada.style.display = 'block';
+            campoHoraLlamada.classList.add('visible');
+        }
+    }
+    // --- Fin Lógica Formulario Cotización ---
+const yearSpan = document.getElementById('currentYear');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+}
 
 }); // Fin del DOMContentLoaded
